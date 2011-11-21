@@ -1,0 +1,17 @@
+Build.PL
+lib/Text/Perfide/BookCleaner/capitulos.the
+lib/Text/Perfide/BookCleaner/Aux.pm
+Changes
+MANIFEST
+META.yml
+README
+lib/Text/Perfide/BookCleaner.pm
+t/00-load.t
+t/pod-coverage.t
+t/pod.t
+bin/bookcleaner
+bin/unbookcleaner
+Makefile.PL
+META.json
+t/jj1.t
+t/t1.src

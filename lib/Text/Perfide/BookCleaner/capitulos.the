@@ -1,0 +1,453 @@
+#BT - (Broader Term) termo gen�rico
+#NT - (Narrower Term) termo espec�fico
+#RT - termo associado
+#SN - nota explicativa
+#UF - used for (sin�nimos)
+#------------------------------------------
+%enc utf8
+
+###%language PT FR EN
+%baselang SEC
+
+cap
+PT capítulo, cap, capitulo
+IT capitolo
+FR chapitre, chap
+EN chapter, chap
+ES capítulo
+IT capitolo, cap
+DE kapitel
+NT sec
+RU ГЛАВА
+RU глава
+
+book
+PT livro
+FR livre
+EN book
+NT cap
+RU КНИГА 
+RU книга 
+
+sec
+PT seção
+PT secção
+FR section
+EN section
+ES sección
+IT sezione
+DE abschnitt
+
+abstract
+PT resumo
+FR résumé , abstract
+ES resumen
+EN abstract
+IT riassunto
+BT _alone
+
+part
+IT parte
+PT parte
+FR partie
+EN part
+ES parte
+DE teil
+RU часть
+NT act, cena, ind, apend, pre, pos, anex
+
+act
+PT acto
+PT ato
+FR acte 
+EN act
+ES acto
+IT atto 
+DE akt
+NT cena
+BT teatro
+
+scene
+PT cena
+FR scène
+##EN cene
+ES escena
+EN scene
+IT scena
+DE szene
+BT act
+
+ind
+PT índice, indice
+FR table_des_matières
+EN index, table_of_contents
+FR indice
+ES índice
+IT indice
+DE index
+BT _alone
+RU СОДЕРЖАНИЕ
+RU содержание
+BT _langspecific
+
+apend
+PT apêndice, apendice
+FR appendice
+EN appendix
+ES apéndice
+IT appendice
+DE anhang 
+
+introd
+PT introdução
+FR introduction
+ES introducción
+EN introduction
+IT introduzione
+DE einführung
+BT _alone
+
+present
+PT apresentação
+FR présentation
+ES presentación
+EN presentation
+IT presentazione
+DE präsentation
+BT _alone
+BT _langspecific
+
+
+sum
+PT sumário
+FR sommaire
+ES resumen 
+EN summary
+IT sommario
+DE Zusammenfassung 
+BT _alone
+
+pre
+PT prefácio, prefacio
+EN preface
+RU ПРЕДИСЛОВИЕ
+RU предисловие
+FR préface , avant-propos
+#IT prefazione ?
+DE Vorwort 
+BT _langspecific
+
+glo
+PT glossário
+FR glossaire
+ES glosario
+EN glossary
+IT glossario 
+DE glossar 
+BT _alone
+BT _langspecific
+
+
+pre
+PT prólogo, prologo
+EN prologue
+FR prologue
+ES prólogo
+IT prologo 
+DE prolog 
+
+
+advert
+PT advertência
+ES advertencia
+BT _langspecific
+
+pos
+PT épilogo, posfácio, epilogo
+FR épilogue
+EN afterword
+EN epilogue
+ES epílogo
+IT epilogo
+RU ЭПИЛОГ
+RU эпилог
+
+epig
+PT epígrafe
+FR épigraphe
+ES epígrafe
+EN epigraph
+IT titolo
+DE titel
+
+thanks
+PT agradecimentos
+FR remerciments
+ES agradecimientos
+EN acknowledgments
+BT _alone
+BT _langspecific
+
+anex
+PT anexo
+FR annexe
+EN appendix
+ES anejo
+DE anhang
+
+rubric
+PT rubrica
+
+end
+PT fim
+FR fin
+EN the_end
+BT _alone
+
+vol
+PT volume
+FR volume
+EN volume
+BT _alone_or_number
+
+tom
+PT tomo
+FR tome
+ES tomo
+EN tome
+IT tomo
+RU Том
+
+
+bio
+PT biografia
+PT nota biográfica
+PT nota biobibliográfica
+BT _alone
+BT _langspecific
+
+bib
+PT bibliografia
+PT referências bibliográficas
+FR références bibliographiques
+ES referencias bibliográficas
+EN bibliographic references
+IT riferimenti bibliografici
+DE bibliographischen referenzen
+BT _alone
+
+conc
+PT conclusão
+FR conclusion
+ES conclusión
+EN conclusion
+IT conclusioni
+DE abschluss
+BT _alone
+
+
+not
+PT notas
+FR notes
+EN notes
+RU КОММЕНТАРИИ
+RU комментарии
+BT _alone
+
+art
+PT artigo
+EN article
+BT _number_rig
+
+#Популярность:  ?
+#ВТОРОЙ ДЕНЬ    2 dia
+#ПЯТЫЙ ДЕНЬ     5
+#ТРЕТИЙ ДЕНЬ    3
+#ЧЕТВЕРТЫЙ ДЕНЬ  4
+#
+#ЧАСТЬ ПЕРВАЯ   1
+#ЧАСТЬ ВТОРАЯ   part  2
+#ЧАСТЬ ТРЕТЬЯ   3
+#ЧАСТЬ ЧЕТВЕРТАЯ 4
+#ЧАСТЬ ПЯТАЯ    5
+#ЧАСТЬ ШЕСТАЯ   6
+#ЧАСТЬ СЕДЬМАЯ  7
+
+#1_sec:Глава_ первая. ОЦЕНЕННАЯ ГОЛОВА
+#2_sec:Глава_ вторая. ПОЛКОВНИК МУНРО
+#3_sec:Глава_ третья. ИСТОРИЯ БУНТА СИПАЕВ
+#4_sec:Глава_ четвертая. В ЭЛЛОРСКИХ ПЕЩЕРАХ
+#5_sec:Глава_ пятая. «ЖЕЛЕЗНЫЙ ВЕЛИКАН"
+#6_sec:Глава_ шестая. ПЕРВЫЕ ПЕРЕХОДЫ
+#7_sec:Глава_ седьмая. БОГОМОЛЬЦЫ НА РЕКЕ ФАЛЬГУ
+#8_sec:Глава_ восьмая. НЕСКОЛЬКО ЧАСОВ В БЕНАРЕСЕ
+#9_sec:Глава_ девятая. АЛЛАХАБАД
+#10_sec:Глава_ десятая. ГРУСТНЫЕ КАРТИНЫ
+#11_sec:Глава_ одиннадцатая. ПЕРЕМЕНА МУССОНА
+#12_sec:Глава_ двенадцатая. ПОЖАР
+#13_sec:Глава_ тринадцатая. ПОДВИГИ КАПИТАНА ГОДА
+#14_sec:Глава_ четырнадцатая. ОДИН НА ТРОИХ
+#15_sec:Глава_ пятнадцатая. ТАНДИТСКИЙ ПАЛ
+#16_sec:Глава_ шестнадцатая. «БЛУЖДАЮЩИЙ ОГОНЕК"
+
+
+1
+PT primeiro, primeira, um
+EN first, one
+ES primero, primera
+FR premier, première, premiere
+IT prima
+RU первая
+BT _numeral
+
+2
+PT segundo, segunda, dois
+EN second, two
+ES segundo, segunda
+FR second, seconde, deuxième, deuxieme
+IT seconda
+BT _numeral
+RU вторая
+
+3
+PT terceiro, terceira, três, tres
+EN third, three
+FR troisième, troisieme
+ES tercera, tercero
+IT terza
+BT _numeral
+RU третья
+
+4
+PT quarto, quarta, quatro
+EN fourth, four
+FR quatrième, quatrieme
+IT quarta
+BT _numeral
+RU четвертая
+
+5
+PT quinto, quinta, cinco
+EN fifth
+FR cinquième, cinquieme
+IT quinta
+BT _numeral
+RU пятая
+
+6
+PT sexto, sexta, seis
+EN sixth
+FR sixième, sixieme
+IT sesta
+BT _numeral
+RU шестая
+
+7
+PT sétimo, sétima, sete
+EN seventh
+FR septième, septieme
+IT settima
+BT _numeral
+RU седьмая
+
+8
+PT oitavo, oitava, oito
+EN eigth
+FR huitième, huitieme
+IT ottava
+BT _numeral
+RU восьмая
+
+9
+PT nono, nona, nove
+EN ninth
+FR neuvième, neuvieme
+BT _numeral
+RU девятая
+
+10
+PT décimo, décima, decimo, decima, dez
+EN tenth
+FR dixième, dixieme
+BT _numeral
+RU десятая
+
+11
+PT onze, undécimo, undecimo, decimo_primeiro, décimo_primeiro
+EN eleven
+BT _numeral
+RU одиннадцатая
+
+12
+PT doze
+BT _numeral
+RU двенадцатая
+
+13
+PT treze
+BT _numeral
+RU тринадцатая
+
+14
+PT catorze
+BT _numeral
+RU четырнадцатая
+
+15
+PT quinze
+BT _numeral
+RU пятнадцатая
+
+16
+PT dezasseis, dezesseis
+BT _numeral
+RU шестнадцатая
+
+17
+PT dezassete, dezessete
+BT _numeral
+
+18
+PT dezoito
+BT _numeral
+
+19
+PT dezanove, dezenove
+BT _numeral
+
+20
+PT vinte, vigésimo, vigésima, vigésimos, vigésimas, 20
+BT _numeral
+
+30
+PT trinta
+BT _numeral
+
+40
+PT quarenta
+BT _numeral
+
+50
+PT cinquenta
+BT _numeral
+
+60
+PT sessenta
+BT _numeral
+
+70
+PT setenta
+BT _numeral
+
+80
+PT oitenta
+BT _numeral
+
+90
+PT noventa
+BT _numeral
+
+100
+PT cem
+BT _numeral
+

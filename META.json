@@ -1,0 +1,47 @@
+{
+   "abstract" : "A module for processing books in plain text formats.",
+   "author" : [
+      "Jose Joao <jj@di.uminho.pt>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.112150",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Text-Perfide-BookCleaner",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Biblio::Thesaurus" : 0,
+            "Roman" : 0,
+            "Test::More" : 0
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.38"
+         }
+      }
+   },
+   "provides" : {
+      "Text::Perfide::BookCleaner" : {
+         "file" : "lib/Text/Perfide/BookCleaner.pm",
+         "version" : "0.01_01"
+      },
+      "Text::Perfide::BookCleaner::Aux" : {
+         "file" : "lib/Text/Perfide/BookCleaner/Aux.pm",
+         "version" : 0
+      }
+   },
+   "release_status" : "testing",
+   "resources" : {
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ]
+   },
+   "version" : "0.01_01"
+}

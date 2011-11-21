@@ -1,0 +1,27 @@
+---
+abstract: 'A module for processing books in plain text formats.'
+author:
+  - 'Jose Joao <jj@di.uminho.pt>'
+build_requires:
+  Biblio::Thesaurus: 0
+  Roman: 0
+  Test::More: 0
+configure_requires:
+  Module::Build: 0.38
+dynamic_config: 1
+generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.112150'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Text-Perfide-BookCleaner
+provides:
+  Text::Perfide::BookCleaner:
+    file: lib/Text/Perfide/BookCleaner.pm
+    version: 0.01_01
+  Text::Perfide::BookCleaner::Aux:
+    file: lib/Text/Perfide/BookCleaner/Aux.pm
+    version: 0
+resources:
+  license: http://dev.perl.org/licenses/
+version: 0.01_01

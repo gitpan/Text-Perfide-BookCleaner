@@ -1,0 +1,204 @@
+#!/usr/bin/perl -s
+use strict;
+use warnings;
+use Data::Dumper;
+$Data::Dumper::Indent=0;
+$Data::Dumper::Terse=1;
+
+use Text::Perfide::BookCleaner;
+use File::Basename;
+
+our ($b,$p1,$p2,$p3,$p4,$p5,$simplify,$normpar,$j,$v,$c,$minhf,
+     $pipe,$latin1,$enc,$o,$dir,$dry,$outlist);
+my ($v1,$v2,$v3,$v4,$v5);
+my $commit =1 if $c || $pipe;
+
+if (defined($j)){
+	if($j =~ '1') 	{ $p1=1			} else { $p1=0;       }
+	if($j =~ '2') 	{ $p2=1			} else { $p2=0;       }
+	if($j =~ '3') 	{ $p3=1			} else { $p3=0;       }
+	if($j =~ '4') 	{ $p4=1			} else { $p4=0;       }
+	if($j =~ '5') 	{ $p5=1			} else { $p5=0;       }
+	if($j =~ 'c') 	{ $commit=1		} else { $commit=0;   }
+	if($j =~ 'p') 	{ $pipe=1;$commit=1	} else { $pipe=0; }
+	#if($j =~ 's') 	{ $simplify=1	} else { $simplify=0; }
+	#if($j =~ 'np')	{ $normpar=1	} else { $normpar=0;  }
+}
+
+if (defined($v)){
+	if($v =~ '1') 	{ $v1=1			} else { $v1=0;       }
+	if($v =~ '2') 	{ $v2=1			} else { $v2=0;       }
+	if($v =~ '3') 	{ $v3=1			} else { $v3=0;       }
+	if($v =~ '4') 	{ $v4=1			} else { $v4=0;       }
+	if($v =~ '5') 	{ $v5=1			} else { $v5=0;       }
+}
+
+$p1       //= 1;
+$p2       //= 1;
+$p3       //= 1;
+$p4       //= 0;
+$p5       //= 1;
+$commit   //= 0;
+$simplify //= 1; 
+$normpar  //= 1;
+$pipe     //= 0;
+$enc      //="";
+$minhf    //= 5;
+$enc = "CP1252" if $latin1;
+my $htreshold = $minhf;
+my $ftreshold = $minhf;
+
+my $cp1252_simplification = $simplify;
+my $utf_simplification    = $simplify;
+
+my @books;
+if(@ARGV == 1 and $ARGV[0] =~ /dbooks$/){
+	print STDERR "Argument '$ARGV[0]' contains list of books to clean.\n";
+	open BOOKS,'<',$ARGV[0];
+	@books = <BOOKS>;
+	chomp @books;
+}
+else{
+	@books = @ARGV;
+}
+files(@books);
+
+sub files{
+  my $di1 ={};
+  my $di2 ={};
+  my $di3 ={};
+  my $di4 ={};
+  my $di5 ={};
+  my $pbtab={};
+  my $txt;
+  my $outl;
+  if(defined($outlist)){ open $outl, '>', $outlist or die "Could not open file '$outlist'"; }
+  __print("\n===");
+  for my $f (@_) {
+	next if $f =~ /^#/;
+	if(defined($dry)){print "$f\n"; next;}
+    __print( " $f:\n"); 
+    $txt = gettxt($f);
+	$dir //= dirname($f);
+	$f = basename($f);
+	my $out = $o;
+	$out //= "$dir/$f.bc_out";
+    ($di1,$txt,$pbtab) = pages($txt)      if($p1) ; printdi($di1); puttxt("$dir/$f.ou1",$txt) if $v1;
+    ($di2,$txt) = sections($txt)   if($p2) ; printdi($di2); puttxt("$dir/$f.ou2",$txt) if $v2;
+    ($di3,$txt) = paragraphs($txt) if($p3) ; printdi($di3); puttxt("$dir/$f.ou3",$txt) if $v3;
+    ($di4,$txt) = footnotes($txt)  if($p4) ; printdi($di4); puttxt("$dir/$f.ou4",$txt) if $v4;
+    ($di5,$txt) = chars($txt)      if($p5) ; printdi($di5); puttxt("$dir/$f.ou5",$txt) if $v5;
+    $txt = commit($txt)               if($commit)  ;
+	print $outl "$out\n" if defined($outl);
+	puttxt($out,$txt);
+  }
+}
+
+sub puttxt { my ($file,$txt)=@_;
+	if($pipe){ writefile($txt) }
+	else     { 
+		open(my $fd,'>',$file) or die "Could not open file '$file' for writing!";
+		writefile($txt,$fd);
+		close $fd;
+	}
+}
+
+sub __print{
+ if ($pipe) { print STDERR @_ }
+ else       { print @_ }
+}
+
+sub printdi{ my $di=shift;
+    for(keys %$di){
+      if(ref($di->{$_})){ __print("$_=",Dumper($di->{$_}),";\n");  }
+      else              { __print("$_=$di->{$_};\n") if $di->{$_}; }
+    }
+}
+
+__END__
+
+=head1 NAME
+
+bookcleaner - prepare books for alignment and other operations
+
+=head1 SYNOPSIS
+
+ bookcleaner [options] file*
+
+ bookcleaner [options] file.dbooks
+
+=head1 DESCRIPTION
+
+Prepare a textual book (or a list of books in a file with the
+extension "dbooks", with one book path per line) for future 
+align operations. The following steps are done:
+
+=head2 Step1 -- pages, headers footers
+
+Step1 -- pages, headers footers   (-p1=0 to skip this step)
+
+=head2 Step2 -- sections 
+
+Step2 -- sections                 (-p2=0 to skip this step)
+
+=head2 Step3 -- paragraphs 
+
+Step3 -- paragraphs               (-p3=0 to skip this step)
+
+=head2 Step4 -- footnotes 
+
+Step4 -- footnotes                (Deactivated by default. -p4=1 to perform this step. )
+
+=head2 Step5 -- char level cleaning     
+
+Step5 -- char level cleaning     (-p5=0 to skip this step)
+
+=head2 Commit
+
+Commit
+
+=head1 Options
+
+ -c  Commit at the end (removes several debug marks (_pb, etc) before creating output file
+
+ -j=1c    Just do step 1 and commit
+ -j=...p  Just ... and send output to STDOUT
+
+ -simplify     to do several char level simplifications:
+     translate some CP1252 chars to unicode
+     translate several dashes, quotes and double quotes  to ascii
+     defaul=1 
+     use -simplify=0 to avoid simplification
+
+ -v=34  Create temporary output files of the step 3 (file.ou3) and 4 (file-ou4)
+
+ -minhf=3 removes headers or footers if they appear more than 3 
+      times (def:5)
+
+ -pipe   send output to STDOUT
+
+ -latin1
+
+ -o=FILE send output to FILE (default is original file with extension bc_out)
+
+ -dry 	Dry run (DEBUG option, makes bookcleaner  do  nothing and just output 
+ 		the names of the files received	as input
+
+ -dir=DIR create all output files under DIR/
+
+=head1 AUTHOR
+
+Andre Santos
+
+J.Joao Almeida, jj@di.uminho.pt
+
+=head1 SEE ALSO
+
+perl(1).
+
+Text::Perfide::BookCleaner(3pm)
+
+Ontology capitulos.the
+
+=cut      
+

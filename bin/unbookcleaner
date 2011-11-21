@@ -1,0 +1,28 @@
+#!/usr/bin/perl -s
+
+our ($old);
+
+use strict;
+#undef $/;
+#$/='';
+
+my $pb     = qr{(?: ?_pb\d*_)};         ## page break mark
+my $fn     = qr{(?:_fn\d*_)};           ## footnote mark
+
+while(<>){
+
+if($old){
+ s/_sec\+O.*?:(.*?)_/\n/;
+ s/_sec\+NA.*?:(.*?)_/\n$1/;
+ s/_sec:(.*?)_/\n$1/;
+}
+
+ s/<\/?sync\b.*?>//g;
+ s/_sec.*?:(.*?)_ ?//;
+ s/$pb/ /g;
+ s/$fn/ /g;
+ s/_cp1252_//g;
+ 
+ print;
+}
+
